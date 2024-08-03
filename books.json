@@ -2,18 +2,40 @@
     {
         "year": "2024",
         "books": [
-            {
-                "query": "9789083381824"
-            },
-            {
-                "query": "The Algebra of Wealth"
-            }
+            "9789083381824",
+            "The Algebra of Wealth",
+            "how to make the best coffee at home",
+            "religion for atheists"
         ]
     },
     {
         "year": "2023",
-        "books": [{
-            "query": "Infinite Jest"
-        }]
+        "books": [
+            "staff engineer",
+            "Infinite Jest"
+        ]
+    },
+    {
+        "year": "2022",
+        "books": [
+            "four thousand weeks",
+            "flowers for algernon",
+            ""
+        ]
+    },
+    {
+        "year": "2020",
+        "books": [
+            "building microservices"
+        ]
+    },
+    {
+        "year": "2019",
+        "books": [
+            "atomic habits",
+            "things you need to know about the jvm",
+            "systems performance gregg",
+            "artificial intelligence a modern approach fourth edition"
+        ]
     }
 ]

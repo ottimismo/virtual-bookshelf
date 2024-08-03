@@ -80,7 +80,7 @@ async function processJsonData() {
     for (const obj of jsonData) {
         var booksOfYearHtmlSnippet = "";
         for (const book of obj.books) {
-            const bookResponse = await queryByISBN(book.query);
+            const bookResponse = await queryByISBN(book);
             if (bookResponse) {
                 const bookHtml = generateHtmlSnippet(bookResponse);
                 booksOfYearHtmlSnippet += bookHtml;
