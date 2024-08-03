@@ -14,7 +14,12 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Headers', '*')
         self.send_header('Sec-Fetch-Mode', "no-cors")
         self.send_header('Sec-Fetch-Site', 'none')
-        
+
+        self.send_header("Access-Control-Allow-Origin",'*')
+        # self.send_header("Access-Control-Allow-Methods"," 'GET, PUT, POST, DELETE, HEAD, OPTIONS, PATCH, PROPFIND, PROPPATCH, MKCOL, COPY, MOVE, LOCK'")
+        self.send_header("Access-Control-Allow-Methods",'*')
+        self.send_header("Access-Control-Allow-Credentials"," 'true'")
+        self.send_header("Access-Control-Expose-Headers",'*')
         self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
         return super(CORSRequestHandler, self).end_headers()
 

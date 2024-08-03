@@ -1,3 +1,5 @@
+import { getRootCssStyles } from './cssUtils.js';
+
 // Function to fetch the JSON file
 async function fetchJsonData() {
     try {
@@ -13,9 +15,9 @@ async function fetchJsonData() {
 }
 
 async function queryByISBN(ISBN) {
-    console.log("fetching book by "+ISBN)
+    console.log("fetching book by " + ISBN)
     const goodReadsRoot = "https://www.goodreads.com";
-    const url = goodReadsRoot+"/book/auto_complete?format=json&q=" + ISBN
+    const url = goodReadsRoot + "/book/auto_complete?format=json&q=" + ISBN
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -26,7 +28,8 @@ async function queryByISBN(ISBN) {
         return {
             "title": data.title,
             "author": data.author.name,
-            "url": goodReadsRoot+data.bookUrl,
+            "author_initials": getInitials(data.author.name),
+            "url": goodReadsRoot + data.bookUrl,
             "imageUrl": data.imageUrl
         }
     } catch (error) {
@@ -42,21 +45,23 @@ function getInitials(fullName) {
 
 function generateYearSnippet(year, booksOfYearHtmlSnippet) {
     return `
-    <div style="margin-top: 32px;">
     <h2>${year}</h2>
-    <div>
-        ${booksOfYearHtmlSnippet}
-    </div>
-    <hr>
+    <div style="margin-top: 32px; display: flex">
+    ${booksOfYearHtmlSnippet}
     <div>
     `;
+}
+function get_first_words(title) {
+    const words = title.split(/\s+/);
+    const first10Words = words.slice(0, 10);
+    return first10Words.join(' ');
 }
 function generateHtmlSnippet(book) {
     return `
         <div class="book">
             <div class="side spine">
-            <span class="spine-title"> ${book.title}</span>
-            <span class="spine-author"> ${getInitials(book.author)} </span>
+            <span class="spine-title"> ${get_first_words(book.title)}</span>
+            <span class="spine-author"> ${book.author_initials} </span>
             </div>
             <div class="side top"></div>
             <div class="side cover" onclick="location.href='${book.url}'"
@@ -65,12 +70,7 @@ function generateHtmlSnippet(book) {
         </div>
     `;
 }
-// <img src="${imageUrl}" alt="${name}">
-// function queryByISBN(ISBN) {
-//     console.log("isbn" + ISBN);
-//     return { "title": "rapunzel basda adsasd", "author": "meco", };
-// }
-// Function to process the JSON data and update the HTML
+
 async function processJsonData() {
     const jsonData = await fetchJsonData();
     if (!jsonData) return;
@@ -78,29 +78,63 @@ async function processJsonData() {
     const contentDiv = document.getElementById('content');
 
     for (const obj of jsonData) {
-        const year = obj.year;
         var booksOfYearHtmlSnippet = "";
-        const books = obj.books;
-        console.log(books);
-        books.forEach(book => {
-            if (book.ISBN) {
-                bookResponse = queryByISBN(book.ISBN)
+        for (const book of obj.books) {
+            const bookResponse = await queryByISBN(book.query);
+            if (bookResponse) {
+                const bookHtml = generateHtmlSnippet(bookResponse);
+                booksOfYearHtmlSnippet += bookHtml;
             }
-            if (book.title) {
-                // console.log(book.title)
-                // bookResponse = queryByTitle(item.title)                
-            }
-            // if (imageUrl) {
-            //     const imageUrl = await fetchImage(url);
-            // }
-            const bookHtml = generateHtmlSnippet(bookResponse);
-            booksOfYearHtmlSnippet += bookHtml;
-        })
-
-        contentDiv.innerHTML += generateYearSnippet(year, booksOfYearHtmlSnippet);
+        }
+        contentDiv.innerHTML += generateYearSnippet(obj.year, booksOfYearHtmlSnippet);
 
     }
+
+    let spines = Object.values(document.getElementsByClassName("spine"));
+    let covers = Object.values(document.getElementsByClassName("cover"));
+    let tops = Object.values(document.getElementsByClassName("top"));
+
+    let availablePatterns = getRootCssStyles();
+
+    let availableColors = [
+        "maroon",
+        "darkgreen",
+        "darkolivegreen",
+        "brown",
+        "saddlebrown",
+        "sienna",
+        "midnightblue",
+    ];
+
+    // assign a random height, pattern and colour to each book
+    spines.map(function (s, i) {
+        let randomHeight = getRandomInt(220, 290);
+        s.style.height = `${randomHeight}px`;
+        s.style.top = `${280 - randomHeight}px`;
+
+        let randomPattern = randomChoice(availablePatterns);
+        s.style.backgroundImage = `var(${randomPattern})`;
+
+        let randomColor = randomChoice(availableColors);
+        s.style.backgroundColor = randomColor;
+
+        covers[i].style.height = `${randomHeight}px`;
+        covers[i].style.top = `${280 - randomHeight}px`;
+
+        tops[i].style.top = `${280 - randomHeight}px`;
+    });
 }
 
 // Start the process when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', processJsonData);
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomChoice(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}

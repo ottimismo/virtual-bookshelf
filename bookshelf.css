@@ -1,49 +1,76 @@
 :root {
-  --argyle: repeating-linear-gradient(120deg,
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.1) 1px,
-      transparent 1px,
-      transparent 60px),
-    repeating-linear-gradient(60deg,
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.1) 1px,
-      transparent 1px,
-      transparent 60px),
-    linear-gradient(60deg,
-      rgba(0, 0, 0, 0.1) 25%,
-      transparent 25%,
-      transparent 75%,
-      rgba(0, 0, 0, 0.1) 75%,
-      rgba(0, 0, 0, 0.1)),
-    linear-gradient(120deg,
-      rgba(0, 0, 0, 0.1) 25%,
-      transparent 25%,
-      transparent 75%,
-      rgba(0, 0, 0, 0.1) 75%,
-      rgba(0, 0, 0, 0.1));
-  background-size: 70px 120px;
-  --tartan: repeating-linear-gradient(transparent,
-      transparent 50px,
-      rgba(0, 0, 0, 0.4) 50px,
-      rgba(0, 0, 0, 0.4) 53px,
-      transparent 53px,
-      transparent 63px,
-      rgba(0, 0, 0, 0.4) 63px,
-      rgba(0, 0, 0, 0.4) 66px,
-      transparent 66px,
-      transparent 116px,
-      rgba(0, 0, 0, 0.5) 116px,
-      rgba(0, 0, 0, 0.5) 166px,
+  --spine-pyramid: linear-gradient(
+    315deg,
+    transparent 75%,
+    rgba(255, 255, 255, 0.1) 0
+    ),
+    linear-gradient(
+      45deg,
+       transparent 75%,
+        rgba(255, 255, 255, 0.1) 0
+    ),
+    linear-gradient(
+      135deg,
       rgba(255, 255, 255, 0.2) 166px,
-      rgba(255, 255, 255, 0.2) 169px,
-      rgba(0, 0, 0, 0.5) 169px,
-      rgba(0, 0, 0, 0.5) 179px,
-      rgba(255, 255, 255, 0.2) 179px,
-      rgba(255, 255, 255, 0.2) 182px,
-      rgba(0, 0, 0, 0.5) 182px,
-      rgba(0, 0, 0, 0.5) 232px,
-      transparent 232px),
-    repeating-linear-gradient(270deg,
+      transparent 0
+    ),
+    linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.1) 75%,
+      transparent 0
+    );
+    background-size: 20px 20px;
+  --spine-stairs: repeating-linear-gradient(
+      63deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 3px,
+      transparent 0
+    ),
+    linear-gradient(
+      127deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1) 90px,
+      transparent 55%,
+      transparent 0
+    ),
+    linear-gradient(
+      transparent 51%,
+      rgba(0, 0, 0, 0.1) 170px
+    );
+    background-size: 70px 120px;
+  --spine-argyle: repeating-linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px,
+      transparent 60px
+    ),
+    repeating-linear-gradient(
+      60deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px,
+      transparent 60px
+    ),
+    linear-gradient(
+      60deg,
+      rgba(0, 0, 0, 0.1) 25%,
+      transparent 25%,
+      transparent 75%,
+      rgba(0, 0, 0, 0.1) 75%,
+      rgba(0, 0, 0, 0.1)
+    ),
+    linear-gradient(
+      120deg,
+      rgba(0, 0, 0, 0.1) 25%,
+      transparent 25%,
+      transparent 75%,
+      rgba(0, 0, 0, 0.1) 75%,
+      rgba(0, 0, 0, 0.1)
+    );
+  background-size: 70px 120px;
+  --spine-tartan: repeating-linear-gradient(
       transparent,
       transparent 50px,
       rgba(0, 0, 0, 0.4) 50px,
@@ -64,22 +91,49 @@
       rgba(255, 255, 255, 0.2) 182px,
       rgba(0, 0, 0, 0.5) 182px,
       rgba(0, 0, 0, 0.5) 232px,
-      transparent 232px),
-    repeating-linear-gradient(125deg,
+      transparent 232px
+    ),
+    repeating-linear-gradient(
+      270deg,
+      transparent,
+      transparent 50px,
+      rgba(0, 0, 0, 0.4) 50px,
+      rgba(0, 0, 0, 0.4) 53px,
+      transparent 53px,
+      transparent 63px,
+      rgba(0, 0, 0, 0.4) 63px,
+      rgba(0, 0, 0, 0.4) 66px,
+      transparent 66px,
+      transparent 116px,
+      rgba(0, 0, 0, 0.5) 116px,
+      rgba(0, 0, 0, 0.5) 166px,
+      rgba(255, 255, 255, 0.2) 166px,
+      rgba(255, 255, 255, 0.2) 169px,
+      rgba(0, 0, 0, 0.5) 169px,
+      rgba(0, 0, 0, 0.5) 179px,
+      rgba(255, 255, 255, 0.2) 179px,
+      rgba(255, 255, 255, 0.2) 182px,
+      rgba(0, 0, 0, 0.5) 182px,
+      rgba(0, 0, 0, 0.5) 232px,
+      transparent 232px
+    ),
+    repeating-linear-gradient(
+      125deg,
       transparent,
       transparent 2px,
       rgba(0, 0, 0, 0.2) 2px,
       rgba(0, 0, 0, 0.2) 3px,
       transparent 3px,
       transparent 5px,
-      rgba(0, 0, 0, 0.2) 5px);
+      rgba(0, 0, 0, 0.2) 5px
+    );
 }
 
 .bookshelf {
   width: 100%;
   margin-top: 32px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .book {
@@ -90,7 +144,6 @@
   transform-style: preserve-3d;
   transform: translateZ(0) rotateY(0);
   transition: transform 1s;
-  cursor: pointer;
 }
 
 .side {
@@ -127,15 +180,13 @@
   position: absolute;
   color: goldenrod;
   bottom: 0px;
-  left: 20%;
-  /* no idea why 20% centers it */
+  left: 20%; /* no idea why 20% centers it */
 }
 
 .top {
   width: 50px;
   height: 190px;
-  top: -2px;
-  /* hmm, why -2 and not 0? */
+  top: -2px;  /* hmm, why -2 and not 0? */
   background-image: linear-gradient(90deg, white 90%, gray 10%);
   background-size: 5px 5px;
   transform: rotateX(90deg) translateZ(95px) translateY(-95px);
@@ -153,61 +204,8 @@
   transition: transform 1s;
 }
 
-.book:hover,
-.book:active {
-  z-index: 999;
-  position: relative;
-  transform: rotateX(-25deg) rotateY(-40deg) rotateZ(-15deg) translateY(50px) translateX(-30px);
-}
-
-body {
-  font-family: "PT Serif", serif;
-  margin: 40px auto;
-  max-width: 760px;
-  padding: 20px;
-  text-rendering: optimizeLegibility;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-p,
-ol {
-  line-height: 30px;
-}
-
-h1 {
-  font-size: 64px;
-  font-weight: 300;
-  letter-spacing: -2px;
-  margin: 30px 0;
-}
-
-div.entry {
-  margin: 40px 0;
-}
-
-div.page-date {
-  font-style: italic;
-  float: left;
-  width: 150px;
-  text-align: right;
-}
-
-div.detail {
-  margin-left: 200px;
+.book:hover {
+  z-index: 1;
+  transform: rotateX(-25deg) rotateY(-40deg) rotateZ(-15deg) translateY(50px)
+    translateX(-30px);
 }
