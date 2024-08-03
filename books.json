@@ -1,0 +1,19 @@
+[
+    {
+        "year": "2024",
+        "books": [
+            {
+                "ISBN": "9789083381824"
+            },
+            {
+                "title": "The Algebra of Wealth"
+            }
+        ]
+    },
+    {
+        "year": "2023",
+        "books": [{
+            "title": "Infinite Jest"
+        }]
+    }
+]
