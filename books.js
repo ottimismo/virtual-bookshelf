@@ -56,6 +56,9 @@ function get_first_words(title) {
     const first10Words = words.slice(0, 10);
     return first10Words.join(' ');
 }
+function removeSmallSize(url) {
+    return url.split(/\._S\w\d+_/).join('')
+}
 function generateHtmlSnippet(book) {
     return `
         <div class="book">
@@ -65,7 +68,7 @@ function generateHtmlSnippet(book) {
             </div>
             <div class="side top"></div>
             <div class="side cover" onclick="location.href='${book.url}'"
-            style="background-image: url(${book.imageUrl})">
+            style="background-image: url(${removeSmallSize(book.imageUrl)})">
             </div>
         </div>
     `;
