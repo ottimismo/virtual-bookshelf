@@ -14,10 +14,10 @@ async function fetchJsonData() {
     }
 }
 
-async function queryByISBN(ISBN) {
-    console.log("fetching book by " + ISBN)
+async function queryGoodReadsAPI(query) {
+    console.log("fetching book by " + query)
     const goodReadsRoot = "https://www.goodreads.com";
-    const url = goodReadsRoot + "/book/auto_complete?format=json&q=" + ISBN
+    const url = goodReadsRoot + "/book/auto_complete?format=json&q=" + query
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -83,7 +83,7 @@ async function processJsonData() {
     for (const obj of jsonData) {
         var booksOfYearHtmlSnippet = "";
         for (const book of obj.books) {
-            const bookResponse = await queryByISBN(book);
+            const bookResponse = await queryGoodReadsAPI(book);
             if (bookResponse) {
                 const bookHtml = generateHtmlSnippet(bookResponse);
                 booksOfYearHtmlSnippet += bookHtml;
